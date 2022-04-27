@@ -8,14 +8,13 @@ const client = new Client({
 
 const mysql = require("mysql");
 const fs = require("fs");
-
 const config = require("./config.json");
 
 global.con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: PROCESS.ENV.DB_NAME,
+    database: process.env.DB_NAME,
 });
 
 global.con.connect((err) => {
@@ -37,7 +36,7 @@ client.rawSlashCommands = [];
 
 fs.readdir("./commands/", (err, files) => {
     files.forEach((file) => {
-        const cmd = require(file);
+        const cmd = require(`./commands/${file}`);
         cmd.description = cmd.desc;
         delete cmd.desc;
 
@@ -48,7 +47,7 @@ fs.readdir("./commands/", (err, files) => {
         if (cmd.userPermissions) cmd.defaultPermission = false;
 
         client.rawSlashCommands.push(cmd);
-        client.slashcommands.set(cmd.name, require(file));
+        client.slashcommands.set(cmd.name, require(`./commands/${file}`));
     });
 });
 
@@ -56,4 +55,4 @@ process.on("unhandledRejection", (error) => {
     console.error("Unhandled promise rejection:", error);
 });
 
-client.login(PROCESS.ENV.TOKEN);
+client.login(process.env.TOKEN);

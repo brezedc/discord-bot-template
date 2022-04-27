@@ -1,4 +1,4 @@
-const config = require("./config.json");
+const config = require("../config.json");
 
 module.exports = async (client) => {
     client.user.setPresence({ activities: [{ name: "Status" }], status: "online" });
