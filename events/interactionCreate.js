@@ -3,9 +3,7 @@ module.exports = (client, interaction) => {
 
   if (interaction.isCommand() || interaction.isContextMenu()) {
     const cmd = client.slashcommands.get(interaction.commandName);
-    if (!cmd) {
-      return;
-    }
+    if (!cmd) return;
 
     cmd.run(require("discord.js"), client, interaction);
   }
