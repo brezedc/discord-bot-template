@@ -45,6 +45,11 @@ module.exports = async (client) => {
       }, []);
 
       guild.commands.permissions.set({ fullPermissions });
+      console.log("[DEV-MODE] Successfully refreshed application (/) application");
     });
+  } else {
+    console.log("Started refreshing application (/) commands.");
+    await client.application.commands.set(client.rawSlashCommands);
+    console.log("Successfully refreshed application (/) application");
   }
 };
