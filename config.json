@@ -1,6 +1,6 @@
 {
     "devMode": true,
-    "guild": "YOUR_GUILD_ID",
+    "guildid": "YOUR_GUILD_ID",
     "embeds": {
         "colors": {
             "default": "0x00FF00",
